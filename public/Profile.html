@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <script type="text/javascript" src="jqueryFiles/jquery-1.11.3.min.js"></script>
+    <link href="bootstrapcss/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrapcss/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrapJs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="cssFiles/index.css">
+    <link rel="stylesheet" href="cssFiles/profile.css">
+    <script src="jqueryFiles/jquery.toaster.js"></script>
+    <script type="application/javascript" src="jsFiles/profile.js"></script>
+
+    <style type="text/css">
+        .pac-container:after{
+            content:none !important;
+        }
+    </style>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtI7AN64cEY4OHkRyaPJd_RwiuDe_pA-o&libraries=places&language=en">
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top white">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only btn-info">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="logoNew navbar-brand" src='images/logo.png' style="margin-left: 1em;" alt="wham logo" class="img-responsive">
+            <span id="locationSign"  class="glyphicon glyphicon-map-marker"></span>
+            <span  class="nav navbar-nav navbar-left" id="locationDetector"></span>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="nav navbar-nav navbar-right" style="list-style-type: none;padding-top:1em;">
+               <li> <button type="button" class="btn btn-default btn-lg" id="editPreferences" onclick="editPreferences()" style="width:100%;background-color: #31b0d5;border-color: #31b0d5;"><span style="color:white;">Edit Preferences</span></button>
+               </li>
+                <li><button type="button"  class="btn btn-default btn-lg" onclick="getEventLikes()" style="width:100%;background-color: #31b0d5;"> <span style="color:white;border-color: #31b0d5;">Liked Events</span></button>
+                </li> <!--<button type="button" style="margin-top: -20px" class="btn btn-info btn-lg" onclick="">Events</button>-->
+               <li><button type="button" class="btn btn-default btn-lg" id="logoutButton" onclick="logout()" style="width:100%;background-color: #31b0d5;"> <span style="color:white;border-color: #31b0d5;">Logout</span></button>
+               </li>
+            </ul>
+            </div>
+        <div class="nav navbar-nav pull-right" id="userName">
+            <h4 id="current" style="color: #9D9D9D;position:fixed "></h4>
+        </div>
+
+            <!--</form>-->
+        </div>
+  <!--/.navbar-collapse -->
+</nav>
+<!-- Fixed Navbar with login and sign/up button-->
+<br>
+<div class="container">
+<div class="green col-lg-12" style="margin-top: 7em;">
+    <p style="text-align: center; color:#74cfae" class="sans-serif">
+        Welcome to WHAM!
+    </p>
+    <div class="row">
+        <div class="col-md-2">
+            <br>
+            <p class="sans-serif" style="text-align: center; color: white; font-size: large">
+                What's Happening <br>
+                Around Me?
+            </p>
+        </div>
+        <div class="col-md-4">
+                <span class="label">Location
+                    <input type="text" class="form-control" placeholder="Boston, MA" id="loc">
+                </span>
+            <script>
+                var input = document.getElementById('loc');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+            </script>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-md-4">
+                <span class="label">Category
+                    <input type="text" class="form-control" placeholder="Music, Arts, etc." id="cat">
+                </span>
+        </div><!-- col-lg-6 -->
+        <div class="col-md-2">
+            <br>
+            <button class="btn btn-default btn-sm" id="search" onclick="search()">
+                Search Events
+            </button>
+        </div>
+    </div><!-- row -->
+
+    <p class="sans-serif" style="text-align: center; color: white;font-size:x-large">
+        Discover Events, Like and Away you go.
+    </p>
+</div>
+</div>
+<br>
+<div class="container" id="mapDiv">
+    <div class="row">
+
+        <div id="map" class="col-lg-8">
+        </div>
+
+        <!--End of Map Div -->
+        <!--  Start of Listings Div  -->
+        <div id="listings" style="background-color: #F7F7F7;margin-left:0.5em;overflow-y: auto;overflow-x: hidden;height: 604px;" class="col-lg-4 pull-right listings">
+
+        </div>
+        <!-- End of Listings Div  -->
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 pull-right">
+            <button id="moreResults" class="btn btn-block btn-success" onclick="moreResults()">MORE EVENTS</button>
+        </div>
+    </div>
+
+</div>
+<br>
+<!--
+Footer-->
+<!--<div class="container">
+    <footer class="footer col-lg-12">
+
+            <p>
+                Copyright © Tech Patriots. 2015. All rights reserved.
+                <br>
+                Boston, Massachusetts
+            </p>
+    </footer>
+</div>-->
+
+<!-- Get User's Preferences Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Set Your Preferences</h4>
+            </div>
+            <br>
+            <div class="modal-body" style="padding:0em 2em;">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img id="music" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/party-music-hd-wallpaper-1920x1200-3850-e1394234236350.jpg">
+                            <p class="preferences_music">Music</p>
+                        <img class="img-responsive img-circle" id="green_check_music" >
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="food" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/Food_Drink.jpg">
+                        <p class="preferences_food">Food & Drink</p>
+                        <img class="img-responsive img-circle" id="green_check_food">
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="parties" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/parties.jpg">
+                        <p class="preferences_parties">Parties</p>
+                        <img class="img-responsive img-circle" id="green_check_parties">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img id="yoga" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/yoga.jpeg">
+                        <p class="preferences_yoga">Yoga</p>
+                        <img class="img-responsive img-circle" id="green_check_yoga">
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="meetups" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/networking.jpg">
+                        <p class="preferences_networking">Meetups</p>
+                        <img class="img-responsive img-circle" id="green_check_networking">
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="sports" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/Dallas-Cowboys-Stadium-Wallpaper-HD-Widescreen.jpg">
+                        <p class="preferences_sports">Sports</p>
+                        <img class="img-responsive img-circle" id="green_check_sports">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img id="movies" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/movies.jpg">
+                        <p class="preferences_yoga">Movies</p>
+                        <img class="img-responsive img-circle" id="green_check_movies">
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="farmers" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/farmers.jpg">
+                        <p class="preferences_networking" style="margin-left: 10px;">Farmer's Market</p>
+                        <img class="img-responsive img-circle" id="green_check_farmers">
+                    </div>
+                    <div class="col-lg-4">
+                        <img id="festivals" onclick="getPref(this)" class="img-responsive img-circle circular-images" src="images/festivals.jpg">
+                        <p class="preferences_sports" style="margin-left: 32px">Festivals</p>
+                        <img class="img-responsive img-circle" id="green_check_festivals">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button onclick="getListPref()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> <!-- End of Modal-->
+
+
+
+<!-- Likes Modal-->
+<div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#74cfae">
+              <h4>Events you liked previously</h4>
+            </div>
+            <br>
+            <div class="modal-body">
+                <div class="row" id="likesRow">
+                </div>
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> <!-- End of Modal-->
+
+
+
+
+<script type="text/javascript">
+    $(function() {
+
+        var $formLogin = $('#login-form');
+        var $formLost = $('#lost-form');
+        var $formRegister = $('#register-form');
+        var $divForms = $('#div-forms');
+        var $modalAnimateTime = 300;
+        var $msgAnimateTime = 150;
+        var $msgShowTime = 2000;
+
+        $("form").submit(function () {
+            switch(this.id) {
+                case "login-form":
+                    var $lg_username=$('#login_username').val();
+                    var $lg_password=$('#login_password').val();
+                    if ($lg_username == "ERROR") {
+                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                    } else {
+                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                    }
+                    return false;
+                    break;
+                case "lost-form":
+                    var $ls_email=$('#lost_email').val();
+                    if ($ls_email == "ERROR") {
+                        msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                    } else {
+                        msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                    }
+                    return false;
+                    break;
+                case "register-form":
+                    var $rg_username=$('#register_username').val();
+                    var $rg_email=$('#register_email').val();
+                    var $rg_password=$('#register_password').val();
+                    var $rg_confirm_password=$('#register_confirm_password').val();
+                    var $rg_yob=$('#register_yob').val();
+                    var $rg_gender=$('.gender').val();
+
+                    if ($rg_username == "ERROR") {
+                        msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                    } else {
+                        msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                    }
+                    return false;
+                    break;
+                default:
+                    return false;
+            }
+            return false;
+        });
+
+        $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+        $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+        $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+        $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+        $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+        $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+
+
+        function modalAnimate ($oldForm, $newForm) {
+            var $oldH = $oldForm.height();
+            var $newH = $newForm.height();
+            $divForms.css("height",$oldH);
+            $oldForm.fadeToggle($modalAnimateTime, function(){
+                $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                    $newForm.fadeToggle($modalAnimateTime);
+                });
+            });
+        }
+
+        function msgFade ($msgId, $msgText) {
+            $msgId.fadeOut($msgAnimateTime, function() {
+                $(this).text($msgText).fadeIn($msgAnimateTime);
+            });
+        }
+
+        function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+            var $msgOld = $divTag.text();
+            msgFade($textTag, $msgText);
+            $divTag.addClass($divClass);
+            $iconTag.removeClass("glyphicon-chevron-right");
+            $iconTag.addClass($iconClass + " " + $divClass);
+            setTimeout(function() {
+                msgFade($textTag, $msgOld);
+                $divTag.removeClass($divClass);
+                $iconTag.addClass("glyphicon-chevron-right");
+                $iconTag.removeClass($iconClass + " " + $divClass);
+            }, $msgShowTime);
+        }
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+body{
+    max-width:100%;
+    max-height: 100%;
+}
+
+.green {
+    background-color: #74cfae;
+}
+
+.white {
+    background-color: white;
+    border-color: white;
+}
+
+.font-color-white{
+    color: white;
+}
+
+.backgroundColor{
+    background-color: white;
+}
+
+.backGroundImages{
+    position: fixed;
+    height: 600px;
+    width: 1140px;
+}
+
+
+.sans-serif{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+#div-forms{
+    width:90%;
+    height:90%;
+}
+
+.footer{
+    color: white; margin-top: 1em; background-color: #414141; text-align: center;
+    padding: 15px;
+
+}
+
+.categories{
+   /* margin-top: 3em;*/
+   /* margin-top: 39em;*/
+}
+
+.image-wrapper_music {
+    position: absolute;
+    left: 180px;
+    top: 0;
+    padding-top: 110px;
+    color: white;
+    margin-left: 175px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+
+.image-wrapper_food{
+    position: absolute;
+    left: 180px;
+    top: 0;
+    padding-top: 110px;
+    color: white;
+    margin-left: -50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+
+.image-wrapper_arts{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding-top: 70px;
+    color: white;
+    margin-left: 160px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+ }
+
+.image-wrapper_parties{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding-top: 70px;
+    color: white;
+    margin-left: 155px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.image-wrapper_classes{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding-top: 70px;
+    color: white;
+    margin-left: 125px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.image-wrapper_networking{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding-top: 90px;
+    color: white;
+    margin-left: 125px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.image-wrapper_sports{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding-top: 100px;
+    color: white;
+    margin-left: 325px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+#mapDiv{
+  /*  margin-bottom: 36em;*/
+    width:1170px;
+    height:604px;
+    display:block;
+
+}
+
+#food_img{
+    height: 213px;
+}
+
+#divLostPassMsg{
+    color: red;
+    font-size: 13px;
+}
+
+#classes_img{
+    height: 203px;
+    width: 360px;
+}
+
+#parties_img
+{
+    height: 203px;
+}
+
+#sports_img{
+    height:203px;
+    width: 100%;
+}
+
+
+.categories_title{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    color: #666;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+}
+
+#map{
+    height: 89%;
+    width: 61%;
+    position: absolute;
+    z-index: 1000;
+}
+
+#rowCat{
+    display: block;
+
+}
+.listings{
+    height:100%;
+    position:relative;
+}
+
+
+.rides{
+    display:inline;
+}
+
+.markerText{
+    margin-left:67px;
+    text-align:left;
+
+}
+
+.logoNew{
+    width: 9em;
+    height:4em;
+    padding:0;
+    /* height: auto;
+     !* padding-top: 0; *!
+     margin-top: -9px;*/
+}
+
+#music_img{
+    height: 15.3em;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+    #map{
+        padding-top:1em;
+        clear: left;
+        display: block;
+        float: left;
+        height: 100%;
+        position: absolute;
+        width: 99%;
+        z-index: 1000;
+    }
+
+    #mapDiv{
+        margin-bottom: 0em;
+    }
+
+
+    .listings {
+        clear: left;
+        display: block;
+        float: left !important;
+        height: auto;
+        margin-top: 40em;
+        position: relative;
+        width: 100%;
+        z-index:10;
+        padding-top: 2em;
+
+
+    }
+
+    .categories{
+        /* margin-top: 3em;*/
+        margin-top: 3em;
+    }
+
+
+
+
+
+}

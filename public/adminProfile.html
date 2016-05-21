@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WHAM</title>
+    <script type="text/javascript" src="jqueryFiles/jquery-1.11.3.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrapcss/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrapJs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jsFiles/admin.js"></script>
+
+</head>
+<body style="background-color: #F7F7F7">
+<!-- Start of header -->
+<div style="background-color: dimgrey;">
+    <div class="container" style=" padding-bottom: 10px;">
+        <div class="navbar-header">
+            <a style ="color : gainsboro ; margin-top: 25px" class="navbar-brand"  href="adminProfile.html">WHAM</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button><br>
+
+        </div>
+        <br/>
+        <div class="nav navbar-nav navbar-right" >
+            <button type="button" style="background-color: gainsboro ;color: white" class="btn btn-lg" id="logoutButton" onclick="logout()">Logout</button>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div> <!-- End of Header -->
+<br><br>
+
+<!-- Start of Body -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h2 class="glyphicon glyphicon-user"> Welcome to Admin's Dashboard</h2>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <button id="getUserProfiles" type="button" class="btn btn-lg btn-success">Show User Profiles</button>
+            <button id="hideProfiles" type="button" class="btn btn-lg btn-warning">Hide Profiles</button>
+        </div>
+    </div>
+    <div class="row">
+        <h3 id="userDetailsHeader">User Details</h3>
+        <table class="table table-hover" id="userTable"></table>
+        <h3 id="moreDetailsHeader">More Details</h3>
+        <table id="preferenceTable" class="table table-hover"></table>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+    <script type="text/javascript" src="jqueryFiles/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/CategoryEvents.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrapcss/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrapJs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="cssFiles/index.css">
+    <script type="text/javascript" src="jsFiles/EventDetails.js"></script>
+
+    <script>
+
+    </script>
+
+    <script type="text/javascript" src=""></script>
+</head>
+<body style="background-color: #F7F7F7">
+<!-- Start of header -->
+<div style="background-color: white;">
+<div class="container" style=" padding-bottom: 10px;">
+    <div class="navbar-header">
+
+            <button style="margin-top: 20px;background-color: #9D9D9D;" type="button" class="btn" onclick="goBack()"><span style="color: white" class="glyphicon glyphicon-arrow-left"></span></button>
+
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button><br>
+
+    </div>
+    <br/>
+    <div class="nav navbar-nav navbar-right" >
+        <img class="logoNew" src='images/logo.png' alt="wham logo" class="img-responsive" style="margin-right: 31em;">
+        <button type="button" style="margin-top: -20px;" class="btn btn-info btn-lg" id="logoutButton" onclick="logout()">Logout</button>
+    </div>
+    <!--/.navbar-collapse -->
+</div>
+</div>
+<br><br><br><br>
+<!-- Event Header Title -->
+<div style="background-color: #F7F7F7">
+    <div style="text-align: center">
+        <p id="eventTitle" style="font-size: 36px ; font-family: Helvetica, Arial, sans-serif">
+
+        </p>
+        <p id="eventTime" style="font-size: initial;"></p>
+        <p id="eventAddress" style="display: initial; font-style: italic"></p>
+        <p id="eventCity" style="display: initial;font-style: italic"></p>
+        <p id="eventRegion" style="display: initial;font-style: italic"></p>
+        <p id="eventCountry" style="display: initial;font-style: italic"></p><br><br>
+        <p>
+        <div class="fb-share-button" id="fb-share-button" data-href="http://wham-teampatriots.rhcloud.com/EventDetails.html?event="
+             data-width="450" data-type="button_count"></div>
+        <!--<a class="twitter-share-button" id="twitter-share-button"
+           href="https://twitter.com/intent/tweet?text=Checkout%20this%20Event%20happening%20near%20you:&url=http://wham-teampatriots.rhcloud.com/EventDetails.html?event="
+           data-size="small"></a>
+
+        <a id="google-plus" href="https://plus.google.com/share?url={http://wham-teampatriots.rhcloud.com/EventDetails.html?event=" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=600');return false;"><img
+                src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>
+
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+        <script type="IN/Share" id="linkedIn" data-url="http://wham-teampatriots.rhcloud.com/EventDetails.html?event=" data-counter="right"></script>
+-->
+        </p>
+
+        <button class="btn btn-sm" id="likeButton"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+        <button class="btn btn-sm" id="disLikeButton"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+        <a id="eventTicketURL" ><button style="color: white; background-color: #ff8000 " id="eventTicketButton" class="btn btn-sm"><span style="color: white" class="glyphicon glyphicon-link"></span> Tickets</button></a>
+    </div><br><br><br>
+
+    <!-- End of Header Title -->
+    <!-- Start of event details -->
+    <div class="container" style="background-color: white">
+        <div class="row" style="border: 1px solid white ; overflow: hidden">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-7">
+                <br><br>
+                <div>
+                    <p id="eventDescription" style="color: #676767 ; font-size: x-large;">
+
+                    </p>
+                </div>
+                <br><br>
+                <div>
+                    <p style="color: #676767 ;font-weight: bold">FOR MORE INFORMATION</p>
+                    <p>Full details are available on the site at
+                        <a id="eventURL"></a>
+                    </p>
+                </div>
+                <br>
+                <div>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <p style="color: #676767; display: initial ; font-weight: bold">  Organizer : </p>
+                    <p id="eventOrganizer" style="display: initial; font-style: italic"></p>
+                </div><br>
+                <div>
+                    <span class="glyphicon glyphicon-globe" ></span>
+                    <p style="color: #676767 ; display: inline; font-weight: bold">  See more at : </p>
+                    <a id="eventURL2">
+                        <p id = "eventURLTitle" style="display: initial; font-style: italic"></p>
+                    </a>
+                </div><br>
+                <div>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    <p style="color: #676767 ; display: inline; font-weight: bold">  Event Date : </p>
+                    <p id="eventURLTime" style="display: initial; font-style: italic"></p>
+                </div><br>
+                <div>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    <p style="color: #676767; display: inline; font-weight: bold">  Location : </p>
+                    <p id="eventAddress2" style="display: initial; font-style: italic"></p>
+                    <p id="eventCity2" style="display: initial;font-style: italic"></p>
+                    <p id="eventRegion2" style="display: initial;font-style: italic"></p>
+                    <p id="eventCountry2" style="display: initial;font-style: italic"></p>
+                </div><br>
+                <div>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <p style="color: #676767; display: inline; font-weight: bold"> COMMENTS</p><br><br>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <br><br>
+            </div>
+            <br><br>
+            <div class="col-lg-3">
+                <img id="eventImage" class="img-responsive" src="" width="200" height="200">
+                <br><br>
+                <div style="position: relative; width: 430px; height: 200px;">
+                    <div id="map">
+
+                    </div>
+                </div><br>
+                <button id="getDir" type="button" class="btn btn-block btn-success" >GET DIRECTIONS</button><br>
+                <button id="uber" type="button" class="btn btn-block" >U B E R</button><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Get User's Preferences Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Uber options for you</h4>
+            </div>
+            <br>
+            <div class="modal-body">
+                <div class="row" id="rideDetails">
+                    <div id="ride0" class=""><p id="disp0" class="rides"></p> <p id="est0" class="rides"></p> <p id="dura0" class="rides"></p> </div>
+                    <div id="ride1" class=""><p id="disp1" class="rides"></p> <p id="est1" class="rides"></p> <p id="dura1" class="rides"></p> </div>
+                    <div id="ride2" class=""><p id="disp2" class="rides"></p> <p id="est2" class="rides"></p> <p id="dura2" class="rides"></p> </div>
+                    <div id="ride3" class=""><p id="disp3" class="rides"></p> <p id="est3" class="rides"></p> <p id="dura3" class="rides"></p> </div>
+                    <div id="ride4" class=""><p id="disp4" class="rides"></p> <p id="est4" class="rides"></p> <p id="dura4" class="rides"></p> </div>
+
+                </div>
+
+            </div>
+            <br>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div> <!-- End of Modal-->
+<!--Footer  -->
+<footer class="footer">
+    <div class="container">
+        <p>
+            Copyright © Tech Patriots. 2015. All rights reserved.
+            <br>
+            Boston, Massachusetts
+        </p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WHAM</title>
+    <script type="text/javascript" src="jqueryFiles/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="cssFiles/index.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <link href="bootstrapcss/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrapcss/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrapJs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="cssFiles/index.css">
+    <script type="application/javascript" src="jsFiles/index.js"></script>
+
+    <style type="text/css">
+        .pac-container:after{
+            content:none !important;
+        }
+    </style>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyBtI7AN64cEY4OHkRyaPJd_RwiuDe_pA-o">
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top white">
+    <br/>
+    <div class="container">
+        <div class="navbar-header">
+            <img class="logoNew navbar-brand" src='images/logo.png' alt="wham logo" class="img-responsive">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only btn-info">Toggle navigation</span>
+                <span class="icon-bar btn-info"></span>
+                <span class="icon-bar btn-info"></span>
+                <span class="icon-bar btn-info"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="nav navbar-nav navbar-right pull-right">
+                <button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign up/Login</button>
+            </div>
+        </div>
+
+        <!--/.navbar-collapse -->
+    </div>
+</nav>
+<br><br><br><br>
+
+<div class="container green">
+    <p style="text-align: center; color:#74cfae" class="sans-serif">
+        Welcome to WHAM!
+    </p>
+    <div class="row">
+        <div class="col-md-2">
+            <br>
+            <p class="sans-serif" style="text-align: center; color: white; font-size: large">
+                What's Happening <br>
+                Around Me?
+            </p>
+        </div>
+        <div class="col-md-4">
+                <span class="label">Location
+                    <input type="text" class="form-control" placeholder="Boston, MA" id="loc">
+                </span>
+            <script>
+                var input = document.getElementById('loc');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+            </script>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-md-4">
+                <span class="label">Category
+                    <input type="text" class="form-control" placeholder="Music, Arts, etc." id="cat">
+                </span>
+        </div><!-- col-lg-6 -->
+        <div class="col-md-2">
+            <br>
+            <button class="btn btn-default btn-sm" id="search">
+                Search Events
+            </button>
+        </div>
+    </div><!-- row -->
+
+    <p class="sans-serif" style="text-align: center; color: white;font-size:x-large">
+        Discover Events, Like and Away you go.
+    </p>
+</div>
+
+<!-- Map Div-->
+<div class="container" id="mapDiv">
+    <div class="row" style="padding-top: 1em;">
+        <div id="map" class="col-lg-8 pull-left">
+        </div>
+        <!--End of Map Div -->
+        <!--  Start of Listings Div  -->
+        <div id="listings" style="background-color: #F7F7F7;margin-left:0.5em;overflow-y: auto;overflow-x: hidden;height: 604px;" class="col-lg-4 pull-right listings">
+
+        </div>
+
+        <!-- End of Listings Div  -->
+    </div>
+</div><br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 pull-right">
+            <button id="moreResults" class="btn btn-block btn-success" onclick="moreResults()">MORE EVENTS</button>
+        </div>
+    </div>
+
+</div>
+<br>
+<!-- Start of Categories Browse Div -->
+<div class="container" id="rowCat">
+    <div class="row categories">
+        <p class="categories_title">
+            Browse Events by Top Categories <span class="glyphicon glyphicon-search"></span>
+        </p>
+        <div class="col-lg-8">
+            <a href="CategoryEvents.html?category=Music">
+                <img class="img-responsive" id= "music_img" src="images/party-music-hd-wallpaper-1920x1200-3850-e1394234236350.jpg">
+                <p class="image-wrapper_music">Music</p>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <a href="CategoryEvents.html?category=Food&Drink">
+                <img class="img-responsive" id="food_img" src="images/Food_Drink.jpg">
+                <p class="image-wrapper_food">Food & Drink</p>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <a href="CategoryEvents.html?category=Arts">
+                <img class="img-responsive" src="images/michael-jackson-art-hd-wallpapers-231r1lx.jpg">
+                <p class="image-wrapper_arts">Arts</p>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <a href="CategoryEvents.html?category=Yoga">
+                <img class="img-responsive" id="classes_img" src="images/yoga.jpeg">
+                <p class="image-wrapper_classes">Classes</p>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <a href="CategoryEvents.html?category=Parties">
+                <img class="img-responsive" id="parties_img" src="images/parties.jpg">
+                <p class="image-wrapper_parties">Parties</p>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <a href="CategoryEvents.html?category=Networking">
+                <img class="img-responsive" id="networking_img" src="images/networking.jpg">
+                <p class="image-wrapper_networking">Networking</p>
+            </a>
+        </div>
+        <div class="col-lg-8">
+            <a href="CategoryEvents.html?category=Sports">
+                <img class="img-responsive" id="sports_img" src="images/Dallas-Cowboys-Stadium-Wallpaper-HD-Widescreen.jpg">
+                <p class="image-wrapper_sports">Sports</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!--Footer  -->
+<div class="container">
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Copyright © Tech Patriots. 2015. All rights reserved.
+                <br>
+                Boston, Massachusetts
+            </p>
+        </div>
+    </footer>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="margin-left:4em;padding-left:12em;">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="logoNew" src='images/logo.png' alt="wham logo" class="img-responsive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+                <!-- Begin # Login Form -->
+                <form id="login-form">
+                    <div class="modal-body" style="margin-left:4em;">
+                        <div id="div-login-msg">
+                            <h4 id="errorDiv_login" style="color: red"></h4>
+                            <h3>Sign In</h3>
+                        </div>
+                        <input id="login_username" class="form-control" type="email" placeholder="Email">
+                        <input id="login_password" class="form-control" type="password" placeholder="Password">
+                        <!--<div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>-->
+                    </div>
+                    <div class="modal-footer" style="margin-left:4em;">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block" id="loginButton">Login</button>
+                        </div>
+                        <div>
+                            <button id="login_lost_btn" type="button" class="btn btn-link btn-success">Lost Password?</button>
+                            <button id="login_register_btn" type="button" class="btn btn-link btn-success">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End # Login Form -->
+
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+                    <div class="modal-body" style="margin-left:4em;">
+                        <div id="div-lost-msg">
+                            <h3>Type in your email</h3>
+                        </div>
+                        <div id="divLostPassMsg"></div>
+                        <input id="lost_email" class="form-control" type="email" placeholder="Email" required>
+                    </div>
+                    <div class="modal-footer" style="margin-left:4em;">
+                        <div>
+                            <button id="lostPassword" type="submit" class="btn btn-success btn-lg btn-block">Send</button>
+                        </div>
+                        <div>
+                            <button id="lost_login_btn" type="button" class="btn btn-link btn-success">Log In</button>
+                            <button id="lost_register_btn" type="button" class="btn btn-link btn-success">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Lost Password Form -->
+
+                <!-- Begin | Register Form -->
+                <form id="register-form" style="display:none;">
+                    <div class="modal-body" style="margin-left:4em;">
+                        <div id="div-register-msg">
+                            <h4 id="errorDiv" style="color: red"></h4>
+                            <h3 id="text-register-msg">Register for an account</h3>
+
+                        </div>
+                        <input id="register_first_name" class="form-control" type="text" placeholder="First Name" required>
+                        <input id="register_last_name" class="form-control" type="text" placeholder="Last Name" required>
+                        <input id="register_email" class="form-control" type="email" placeholder="Email" required>
+                        <!-- <input id="register_gender" class="form-control" type="text" placeholder="Gender" required> -->
+                        <div class="form-group">
+                            <!-- <label for="register_yob">Year of Birth</label> -->
+                            <select id="register_yob" class="form-control" id="register_yob" required>
+                                <option value="">--Select a Year--</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option>
+                            </select>
+                        </div>
+                        <div class="form-group btn-group" data-toggle="buttons" id="gender_block">
+                            <label class="btn btn-default active" id="male">
+                                <input type="radio" name="gender" value="male" class="gender"/> Male
+                            </label>
+                            <label class="btn btn-default" id="female" onclick="changeAttr()">
+                                <input type="radio" name="gender" value="female" class="gender" /> Female
+                            </label>
+                            <label class="btn btn-default" id="other" onclick="changeAttr()">
+                                <input type="radio" name="gender" value="other" class="gender" /> Other
+                            </label>
+                        </div>
+
+                        <!--  <input id="register_yob" class="form-control" type="text" placeholder="Year Of Birth" required>     -->
+                        <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        <input id="register_confirm_password" class="form-control" type="password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="modal-footer" style="margin-left:4em;">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block" id="registerUser">Register</button>
+                        </div>
+                        <div>
+                            <button id="register_login_btn" type="button" class="btn btn-link btn-success">Log In</button>
+                            <button id="register_lost_btn" type="button" class="btn btn-link btn-success">Lost Password?</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function() {
+        var $formLogin = $('#login-form');
+        var $formLost = $('#lost-form');
+        var $formRegister = $('#register-form');
+        var $divForms = $('#div-forms');
+        var $modalAnimateTime = 300;
+        var $msgAnimateTime = 150;
+        var $msgShowTime = 2000;
+        $("form").submit(function () {
+            switch(this.id) {
+                case "login-form":
+                    var $lg_username=$('#login_username').val();
+                    var $lg_password=$('#login_password').val();
+                    if ($lg_username == "ERROR") {
+                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                    } else {
+                        msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                    }
+                    return false;
+                    break;
+                case "lost-form":
+                    var $ls_email=$('#lost_email').val();
+                    if ($ls_email == "ERROR") {
+                        msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                    } else {
+                        msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                    }
+                    return false;
+                    break;
+                case "register-form":
+                    var $rg_username=$('#register_username').val();
+                    var $rg_email=$('#register_email').val();
+                    var $rg_password=$('#register_password').val();
+                    var $rg_confirm_password=$('#register_confirm_password').val();
+                    var $rg_yob=$('#register_yob').val();
+                    var $rg_gender=$('.gender').val();
+                    return false;
+                    break;
+                default:
+                    return false;
+            }
+            return false;
+        });
+        $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+        $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+        $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+        $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+        $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+        $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+        function modalAnimate ($oldForm, $newForm) {
+            var $oldH = $oldForm.height();
+            var $newH = $newForm.height();
+            $divForms.css("height",$oldH);
+            $oldForm.fadeToggle($modalAnimateTime, function(){
+                $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                    $newForm.fadeToggle($modalAnimateTime);
+                });
+            });
+        }
+        function msgFade ($msgId, $msgText) {
+            $msgId.fadeOut($msgAnimateTime, function() {
+                $(this).text($msgText).fadeIn($msgAnimateTime);
+            });
+        }
+        function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+            var $msgOld = $divTag.text();
+            msgFade($textTag, $msgText);
+            $divTag.addClass($divClass);
+            $iconTag.removeClass("glyphicon-chevron-right");
+            $iconTag.addClass($iconClass + " " + $divClass);
+            setTimeout(function() {
+                msgFade($textTag, $msgOld);
+                $divTag.removeClass($divClass);
+                $iconTag.addClass("glyphicon-chevron-right");
+                $iconTag.removeClass($iconClass + " " + $divClass);
+            }, $msgShowTime);
+        }
+    });
+</script>
+
+<script type="text/javascript" src="jsFiles/login.js"></script>
+
+
+</body>
+</html>
