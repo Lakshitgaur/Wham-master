@@ -128,5 +128,9 @@ ii) Open your favorite browser and give the following URL:
 ```
 localhost:8000
 ```
+Website hosted at:
+http://wham-teampatriots.rhcloud.com/
 
 ### WHAM!!! You are all set to experience the rich life experience through our application!!
+
+
